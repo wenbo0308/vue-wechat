@@ -7,12 +7,16 @@ function resolve (dir) {
 }
 module.exports = {
     baseUrl:'/',
+    css:{
+        
+    },
     devServer:{
         proxy: {
-            '/api': {
-                target: 'http://172.16.0.229:3000',
-                pathRewrite: {'^/api/':''}
+            '/api': { 
+                target: 'http://172.16.1.31:3000',
+                // pathRewrite: {'^/api/':''}
             }
+
         }
     }
     // resolve: {
