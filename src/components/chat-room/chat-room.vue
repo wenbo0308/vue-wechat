@@ -81,7 +81,7 @@
             },
             initWs(){
                 if('WebSocket' in window){
-                    this.ws = new WebSocket('ws://47.93.55.172:3000');
+                    this.ws = new WebSocket('ws://47.93.55.172:8080/api');
                     this.ws.onopen = (err) => {
                         if(err){console.log(`webSocket连接失败，${JSON.stringify(err)}`)};
                         console.log('webSocket连接成功');
