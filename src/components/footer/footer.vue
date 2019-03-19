@@ -21,16 +21,9 @@
                 ]
             }
         },
-        watch: {
-            '$route' (to, from) {
-                
-            }
+        watch: { 
         },
         methods: {
-            changeIcon(el,i){
-                console.log(el)
-                el.childNodes[0].style.backgroundImage = require('../../common/image/footer_g_'+i+1+'.png');
-            }
         }
     }
 </script>

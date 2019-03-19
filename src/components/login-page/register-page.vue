@@ -4,19 +4,19 @@
         <div class="login-box">
             <div class='login-child'>
                 <label for='nick_name'>昵称</label>
-                <input id='nick_name' type="text" name="name" v-model.trim='sumbitForm.nickName'>
+                <input ref='name' id='nick_name' type="text" name="name" v-model.trim='sumbitForm.nickName' placeholder="昵称字数限制16位">
             </div>
              <div class='login-child'>
                 <label for='user_account'>手机号</label>
-                <input id='user_account' type="mobile" name="account" v-model.trim='sumbitForm.phone'>
+                <input ref='account' id='user_account' type="mobile" name="account" v-model.trim='sumbitForm.phone'>
             </div>
             <div class='login-child'>
                 <label for="user_pwd">密码</label>
-                <input id='user_pwd' type="password" name="pwd" v-model.trim='sumbitForm.pwd'>
+                <input ref='pwd' id='user_pwd' type="password" name="pwd" v-model.trim='sumbitForm.pwd'>
             </div>
             <div class='login-child'>
                 <label for="confirm_pwd">确认<br/>密码</label>
-                <input id='confirm_pwd' type="password" name="c_pwd" v-model.trim='sumbitForm.c_pwd'>
+                <input ref='cpwd' id='confirm_pwd' type="password" name="c_pwd" v-model.trim='sumbitForm.c_pwd'>
             </div>
         </div>
         <div class="submit-btn" @click='submit()'>注册</div>
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+    import {registerForm} from '../../../api/getData.js'
+    import {utils} from '../../methods/utils.js'
     export default {
         name: '',
         data () {
@@ -42,22 +44,39 @@
             goBack(){
                 this.$router.go(-1)
             },
-            submit(){
-                this.$refs.modal.show();
-                let url ='/api/v1/register';
-                this.$axios.post(url,this.sumbitForm).then(res => {
-                    if(res.data.status){
-                        this.$router.push('/login');
-                    }else{
-                        this.$refs.modal.hide()
-                        alert(JSON.stringify(res.data.msg))
+            async _handleRegister(){
+                try{
+                    let status = await utils.checkRegForm(this);
+                    if(status){
+                        this.$refs.modal.show();
+                        let self = this
+                        console.log(this.sumbitForm)
+                        console.log(typeof registerForm);
+                        // demo();
+                        registerForm(this,this.sumbitForm).then(res=>{
+                            if(res.data.status){
+                                self.$router.push('/login');
+                            }else{
+                                self.$refs.modal.hide()
+                                alert(JSON.stringify(res.data.msg))
+                            }
+                        }).catch(err => {
+                            self.$refs.modal.hide()
+                            alert(JSON.stringify(err))
+                        })
                     }
-                }).catch(err => {
-                    this.$refs.modal.hide()
-                    alert(JSON.stringify(err))
-                })
+                }catch(err){
+                    console.log(err);
+                }
+            },
+            submit(){
+                this._handleRegister();
             }
+        },
+        mounted(){
+        //    demo()
         }
+
     }
 </script>
 

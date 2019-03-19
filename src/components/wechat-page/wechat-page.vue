@@ -25,6 +25,8 @@
     import Bscroll from 'better-scroll'
     import promptBox from '../comm/promptBox'
     import delModal from '../comm/deleteModal'  
+    import {getRoomList} from '../../../api/getData.js'
+
     export default {
         name: '',
         data () {
@@ -49,8 +51,7 @@
                 })
             },
             _getRoomList(){
-                let url = `/api/v1/getRoomList`;
-                this.$axios.get(url).then(res => {
+                getRoomList(this).then(res => {
                     if(res.data.status){
                         console.log(res.data.result);
                         this.chatList = res.data.result;
