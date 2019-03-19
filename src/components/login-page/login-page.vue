@@ -19,6 +19,8 @@
 
 <script>
     import Cookies from 'js-cookie'
+    import {loginForm} from '../../../api/getData.js'
+
     export default {
         name: '',
         data () {
@@ -32,8 +34,7 @@
         methods: {
             submit(){
                 this.$refs.modal.show();
-                let url = '/api/v1/login';
-                this.$axios.post(url,this.submitForm).then(res => {
+                loginForm(this,this.submitForm).then(res => {
                     if(res.data.status){
                         console.log(res.data)
                         Cookies.set('auth_token',res.data.token,{expires:1,path:''});

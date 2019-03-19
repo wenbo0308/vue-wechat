@@ -29,6 +29,9 @@
 </template>
 
 <script>
+    import {getFrdDtl,addFriend} from '../../../api/getData.js'
+
+
     export default {
         name: '',
         data () {
@@ -44,8 +47,7 @@
                 this.$router.go(-1)
             },
             _myDtl(){
-                let url = `/api/v1/getFriendDtl?id=`;
-                this.$axios.get(url+this.phone).then(res => {
+                getFrdDtl(this,this.phone).then(res => {
                     if(res.data.status){
                         this.dtl = res.data.result[0];
                     }
@@ -54,8 +56,7 @@
                 })
             },
             add_friend(){
-                let url = '/api/v1/add_friend';
-                this.$axios.post(url,{phone:this.phone,status:0}).then(res => {
+                addFriend(this,{phone:this.phone,status:0}).then(res => {
                     if(res.data.status){
                         this.$router.go(-1);
                     }else{

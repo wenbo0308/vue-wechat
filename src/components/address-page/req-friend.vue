@@ -23,6 +23,9 @@
 </template>
 
 <script>
+    import {getReqFrd,reqRrd} from '../../../api/getData.js'
+
+
     export default {
         name: '',
         data () {
@@ -38,8 +41,7 @@
                 this.$router.push('/searchFriend')
             },
             getReqFriend(){
-                let url = '/api/v1/get_req_friend';
-                this.$axios.get(url).then(res => {
+                getReqFrd(this).then(res => {
                     if(res.data.status){
                         console.log(res.data.result)
                         this.friend = res.data.result;
@@ -50,7 +52,7 @@
             },
             reqFriend(_val){
                 let url = '/api/v1/add_friend';
-                this.$axios.post(url,{phone:_val,status:1}).then(res => {
+                reqRrd(this,{phone:_val,status:1}).then(res => {
                     if(res.data.status){
                         this.$router.go(-1);
                     }else{

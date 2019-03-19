@@ -56,6 +56,8 @@
 </template>
 
 <script>
+    import {getMyDtl} from '../../../api/getData.js'
+
     export default {
         name: '',
         data () {
@@ -81,7 +83,7 @@
             },
             getMyInfo(){
                 let url = `/api/v1/getMyInfo`;
-                this.$axios.get(url).then(res => {
+                getMyDtl(this).then(res => {
                     if(res.data.status){
                         console.log(res.data.result);
                         this.user = res.data.result;

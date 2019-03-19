@@ -30,6 +30,8 @@
 
 <script>
     import Bscroll from 'better-scroll'    
+    import {getFriendList} from '../../../api/getData.js'
+
     export default {
         name: '',
         data () {
@@ -65,8 +67,7 @@
                 this.$router.push('/reqFriend')
             },
             getFriends(){
-                let url = '/api/v1/getMyFriend';
-                this.$axios.get(url).then(res => {
+                getFriendList(this).then(res => {
                     if(res.data.status){
                         let _arr = res.data.result;
                         let userList = []

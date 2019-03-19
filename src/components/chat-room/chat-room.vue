@@ -34,6 +34,8 @@
 <script>
     import {mapState} from 'vuex'
     import Bscroll from 'better-scroll'
+    import {getTalkList} from '../../../api/getData.js'
+
     export default {
         name: '',
         data () {
@@ -68,10 +70,9 @@
                
             },
             getChatList(){
-                let url = `/api/v1/getChatList?id=${this.uid}`;
-                this.$axios.get(url).then(res=>{
+                // let url = `/api/v1/getChatList?id=${this.uid}`;
+                getTalkList(this,this.uid).then(res=>{
                     if(res.data.status){
-                        console.log(res.data.result);
                         this.arr = res.data.result;
                         this.$refs.modal.hide();
                     }
