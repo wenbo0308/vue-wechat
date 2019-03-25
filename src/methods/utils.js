@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-export const utils =  {
+export default  {
 	getCookiesInClient: (key)=>{
 		return Cookies.get(key)?Cookies.get(key):'';
 	},
@@ -35,5 +35,7 @@ export const utils =  {
 		}catch(err){
 			throw err;
 		}
-	}
+	},
+	setDtlIcon: (str) => {sessionStorage.setItem('dtl_icon',str)},
+	getDtlIcon: () => sessionStorage.getItem('dtl_icon')
 }

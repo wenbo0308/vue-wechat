@@ -7,13 +7,16 @@ import fastclick from 'fastclick'
 import vConsole from 'vconsole'
 import vueTouch from 'vue-touch'
 import './common/css/index.styl'
+import utils from './methods/utils.js'
 
 import alertModal from './components/comm/alertModal'
 
 let vconsole = new vConsole();
 Vue.config.productionTip = false;
+Vue.prototype.$util = utils;
 Vue.prototype.$axios = axios;
-Vue.use(vueTouch,{name:"v-touch"})
+// console.log(Vue.prototype)
+Vue.use(vueTouch,{name:"v-touch"});
 Vue.component('alert-modal',alertModal);
 fastclick.attach(document.body)
 

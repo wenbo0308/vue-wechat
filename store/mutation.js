@@ -7,5 +7,8 @@ export default {
 	},
 	getUserDtl(state,obj){
 		state.icon = obj.icon;
+	},
+	getDtlIcon(state,img){
+		state.dtlIcon = img
 	}
 }

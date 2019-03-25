@@ -2,8 +2,10 @@
     <div class="router-parent">
 		<div ref='list' class="index-wrapper">
             <ul class='index-parent'>
-                <li  v-for='(item,index) in chatList' :key='index' > 
-                    <v-touch tag='div' class="index-item" @tap='_goToChatroom(item.to_user,item.nickName)' @press='promptModal($event,item.r_id)'>
+                <li  v-for='(item,index) in chatList' :key='index'> 
+                    <v-touch tag='div' class="index-item" 
+                        @tap='_goToChatroom(item,index)' 
+                        @press='promptModal($event,item.r_id)'>
                         <div class="item_icon" :style="{backgroundImage: 'url('+require('../../common/image/'+item.icon)+')'}">
                             <div class="msg_hint" v-show="item.status == 0?true:false"></div>
                         </div>
@@ -35,7 +37,8 @@
                 p_x:'',
                 p_y:'',
                 r_id:'',
-                isShow:false
+                isShow:false,
+                isAdd:false
             }
         },
         methods: {
@@ -53,7 +56,6 @@
             _getRoomList(){
                 getRoomList(this).then(res => {
                     if(res.data.status){
-                        console.log(res.data.result);
                         this.chatList = res.data.result;
                         this.$refs.modal.hide()
                     }
@@ -61,13 +63,17 @@
                     alert(JSON.stringify(err))
                 })
             },
-            _goToChatroom(_id,name){
-                this.$store.commit('getChatName',name)
-                this.$router.push({path:`/chatRoom/${_id}`});
+            _goToChatroom(_item,i){
+                this.$store.commit('getChatName',_item.nickName);
+                this.$util.setDtlIcon(_item.icon);
+                let ele = document.getElementsByClassName('index-item');
+                ele[i].style.background = 'rgba(0,0,0,.2)'
+                setTimeout(()=>{
+                    ele[i].style.background = '';
+                    this.$router.push({path:`/chatRoom/${_item.to_user}`});
+                },200);
             },
             promptModal(ele,_rid){
-                console.log(ele)
-                console.log(_rid)
                 let _w = document.body.clientWidth;
                 let _h = document.body.clientHeight;
                 if(parseInt(ele.center.x)+100>=_w){
@@ -116,9 +122,34 @@
                 display flex
                 align-items center
                 justify-content flex-start
-            .index-item:hover
-                font-size 20px
-                background-color #abcdee 
+                position relative
+            // .index-item-clicked::after
+            //     // content ''
+            //     position absolute
+            //     top 0px
+            //     left 0px
+            //     right 0px
+            //     bottom 0px
+            //     width 100%
+            //     height 100%
+            //     background-color rgba(0,0,0,100)
+                // pointer-events none
+                // background-image -webkit-radial-gradient(12px 18px,rgba(0,0,0,.2) 10px,rgba(0,0,0,0) 10px)
+                // background-image -o-radial-gradient(12px 18px,rgba(0,0,0,.2) 10px,rgba(0,0,0,0) 10px)
+                // background-image radial-gradient(12px 18px,rgba(0,0,0,.2) 10px,rgba(0,0,0,0) 10px)
+                // background-position 50%
+                // -webkit-animation buttonAnima .6s
+                // animation buttonAnima .6s
+                // -webkit-animation-fill-mode forwards
+                // animation-fill-mode forwards
+                // -webkit-transform scale(1)
+                // -ms-transform scale(1)
+                // transform scale(1)
+            // @keyframes buttonAnima 
+            //     to 
+            //         -webkit-transform scale(10)
+            //         transform scale(10)
+            //         opacity 0
             .item_icon
                 width 44px
                 height 44px

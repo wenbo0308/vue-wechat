@@ -27,7 +27,7 @@
 
 <script>
     import {registerForm} from '../../../api/getData.js'
-    import {utils} from '../../methods/utils.js'
+
     export default {
         name: '',
         data () {
@@ -46,13 +46,10 @@
             },
             async _handleRegister(){
                 try{
-                    let status = await utils.checkRegForm(this);
+                    let status = await this.$util.checkRegForm(this);
                     if(status){
                         this.$refs.modal.show();
                         let self = this
-                        console.log(this.sumbitForm)
-                        console.log(typeof registerForm);
-                        // demo();
                         registerForm(this,this.sumbitForm).then(res=>{
                             if(res.data.status){
                                 self.$router.push('/login');

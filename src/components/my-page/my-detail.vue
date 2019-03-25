@@ -9,7 +9,7 @@
             <li style="height:74px">
                 <div class='my_dtl_c'>
                     <p>头像</p>
-                    <div class='my_icon'></div>
+                    <div class='my_icon' :style="{backgroundImage: 'url('+require('../../common/image/'+myIcon)+')' }"></div>
                 </div>
                  <div class="iconfont icon-goback arrow_1" style="top:32px"></div>
             </li>
@@ -32,7 +32,7 @@
                     <p>二维码名片</p>
                     <div class="my_qrcode"></div>
                 </div>
-                 <router-link tag='div' to='/my/myDtl/qrCode/24235534534' class="iconfont icon-goback arrow_1"></router-link>
+                 <router-link tag='div' :to='"/my/myDtl/qrCode/"+user.uid' class="iconfont icon-goback arrow_1"></router-link>
             </li>
              <li>
                 <div class='my_dtl_c'>
@@ -63,6 +63,7 @@
         data () {
             return {
                 slide_mode:'slide-left',
+                myIcon:sessionStorage.getItem('userIcon'),
                 user:{}
             }
         },
@@ -71,7 +72,6 @@
         },
          watch: {
             '$route' (to, from) {
-                console.log('haha',to.path)
                 const toDepth = to.path.split('/').length
                 const fromDepth = from.path.split('/').length
                 this.slide_mode = toDepth < fromDepth ? 'slide-right' : 'slide-left'
@@ -79,15 +79,14 @@
         },
         methods: {
             goBack(){
-                this.$router.go(-1)
+                this.$router.go(-1);
             },
             getMyInfo(){
-                let url = `/api/v1/getMyInfo`;
                 getMyDtl(this).then(res => {
                     if(res.data.status){
-                        console.log(res.data.result);
                         this.user = res.data.result;
-                        // this.$refs.modal.hide()
+                        sessionStorage.setItem('name',this.user.nickName);
+                        sessionStorage.setItem('phone',this.user.phone)
                     }
                 }).catch(err=>{
                     alert(JSON.stringify(err))
@@ -133,7 +132,6 @@
                 height 59px
                 border-radius 3px
                 margin-right 25px
-                background-image url('../../common/image/icon_3.jpg')
                 background-size contain
                 background-position center center
                 background-repeat no-repeat

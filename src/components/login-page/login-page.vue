@@ -36,9 +36,10 @@
                 this.$refs.modal.show();
                 loginForm(this,this.submitForm).then(res => {
                     if(res.data.status){
-                        console.log(res.data)
                         Cookies.set('auth_token',res.data.token,{expires:1,path:''});
-                         this.$store.commit('getUserDtl',res.data.user)
+                        console.log(typeof res.data.user)
+                        // this.$store.commit('getUserDtl',res.data.user)
+                        sessionStorage.setItem('userIcon',res.data.user.icon)
                         this.$router.push('/wechat')
                     }else{
                         this.$refs.modal.hide()

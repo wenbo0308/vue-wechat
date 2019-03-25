@@ -1,13 +1,13 @@
 <template>
     <div class="router-parent" style="background-color:#ededed">
         <div class='my_dtl'>
-            <div class="my_icon"></div>
+            <div class="my_icon" :style="{backgroundImage: 'url('+require('../../common/image/'+myIcon)+')' }"></div>
             <div class="my_info">
                 <p class="my_name">{{user.nickName}}</p>
                 <div class="my_phone">
                     <p>手机号：{{user.phone}}</p>
                     <p class="my_qrcode"></p>
-                    <router-link tag='p' class="iconfont icon-goback arrow_1" to='/my/myDtl'></router-link>
+                    <router-link tag='p' class="iconfont icon-goback arrow_1" to='/my/myDtl/'></router-link>
                 </div>    
             </div>
         </div>
@@ -24,7 +24,6 @@
 
 <script>
     import {getMyDtl} from '../../../api/getData.js'
-
     export default {
         name: '',
         data () {
@@ -38,12 +37,12 @@
                     {icon:require('../../common/image/m_ka.png'),title:'卡包'},
                     {icon:require('../../common/image/m_b.png'),title:'表情'},
                     {icon:require('../../common/image/m_sh.png'),title:'设置'},
-                ]
+                ],
+                myIcon: sessionStorage.getItem('userIcon')
             }
         },
         watch: {
             '$route' (to, from) {
-                console.log('haha',to.path)
                 const toDepth = to.path.split('/').length
                 const fromDepth = from.path.split('/').length
                 this.slide_mode = toDepth < fromDepth ? 'slide-right' : 'slide-left'
@@ -53,9 +52,8 @@
             getMyInfo(){
                 getMyDtl(this).then(res => {
                     if(res.data.status){
-                        console.log(res.data.result);
                         this.user = res.data.result;
-                        // this.$refs.modal.hide()
+                        console.log('haha',this.user);
                     }
                 }).catch(err=>{
                     alert(JSON.stringify(err))
@@ -65,6 +63,7 @@
         mounted(){
             this.$store.commit('getHeaderTitle','我的');
             this.getMyInfo();
+            // this.myIcon = localStorage.getItem('userIcon')
         }
     }
 </script>
@@ -94,7 +93,9 @@
         width 59px
         height 59px
         border-radius 5px
-        background-color #abcdef
+        background-size contain
+        background-position center center
+        background-repeat no-repeat
         margin-right 10px
     .my_info
         width 80%

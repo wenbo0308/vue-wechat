@@ -22,7 +22,6 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      console.log('haha',to.path)
       const toDepth = to.path.split('/').length
       const fromDepth = from.path.split('/').length
       this.slide_mode = toDepth < fromDepth ? 'slide-right' : 'slide-left'

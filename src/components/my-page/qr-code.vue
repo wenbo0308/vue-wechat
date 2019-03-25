@@ -8,10 +8,10 @@
         <div class="qr_cont">
             <div class='qr_parent'> 
                 <div class='my_dtl'>
-                    <div class="my_icon"></div>
+                    <div class='my_icon' :style="{backgroundImage: 'url('+require('../../common/image/'+myIcon)+')' }"></div>
                     <div class='my_info'>
-                        <p>简单就好</p>
-                        <p>北京 海淀</p>
+                        <p>{{name}}</p>
+                        <p>{{phone}}</p>
                     </div>
                 </div>
                 <div class="my_qr" id='qrcode' ref='qrcode'></div>
@@ -33,7 +33,10 @@
                     value:'http://www.baidu.com',
                     imagePath:this.$route.params.id,
                     filter:'color',
-                }
+                },
+                myIcon: sessionStorage.getItem('userIcon'),
+                name:sessionStorage.getItem('name'),
+                phone:sessionStorage.getItem('phone')
             }
         },
         computed:{
@@ -96,9 +99,11 @@
             .my_icon
                 width 58px
                 height 58px
-                background-color #abcdef
                 border-radius 3px 
                 margin-right 10px  
+                background-size contain
+                background-position center center
+                background-repeat no-repeat
             .my_info
                 height 42px
                 p:first-child

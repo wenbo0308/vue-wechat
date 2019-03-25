@@ -13,7 +13,7 @@
         </div>
         <ul class="new_friend_list">
             <li class="user-dtl-item" v-for='(item,index) in friend' :key='index'>
-                <div class="user-icon"></div>
+                <div class="user-icon" :style="{backgroundImage: 'url('+require('../../common/image/'+item.icon)+')' }"></div>
                 <div class="user-name">{{item.nickName}}</div>
                 <div class="accept-btn"  v-show='item.flag == 0 ?true:false' @click.stop='reqFriend(item.phone)'>接受</div>
                 <div class="accept-btn" style="background:#fff;color:#a7a7a7"  v-show='item.flag == 1 ?true:false' >已添加</div>
@@ -43,15 +43,14 @@
             getReqFriend(){
                 getReqFrd(this).then(res => {
                     if(res.data.status){
-                        console.log(res.data.result)
                         this.friend = res.data.result;
+                        console.log(this.friend)
                     }
                 }).catch(err => {
                     alert(JSON.stringify(err))
                 })
             },
             reqFriend(_val){
-                let url = '/api/v1/add_friend';
                 reqRrd(this,{phone:_val,status:1}).then(res => {
                     if(res.data.status){
                         this.$router.go(-1);
@@ -114,7 +113,9 @@
             .user-icon
                 width 33px
                 height 33px
-                background-color red
+                background-size contain
+                background-position center center
+                background-repeat no-repeat
                 margin:0 15px
             .user-name
                 width 50%

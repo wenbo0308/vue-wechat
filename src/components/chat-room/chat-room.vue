@@ -10,10 +10,10 @@
                  <div class='chat-child' v-for='(item,index) in arr' :key='index'>
                     <div class='chat-cont-right' v-if='item.type==="right"?true:false'>
                         <div class="user-cont">{{item.cont}}<span class="arrow_right"></span></div>
-                        <div class="user-icon"></div>
+                        <div class="user-icon" :style="{backgroundImage: 'url('+require('../../common/image/'+myIcon)+')' }"></div>
                     </div>
                     <div class='chat-cont-left' v-if='item.type==="left"?true:false'>
-                        <div class="user-icon"></div>
+                        <div class="user-icon" :style="{backgroundImage: 'url('+require('../../common/image/'+dtlIcon)+')' }"></div>
                         <div class="user-cont">{{item.cont}}<span class="arrow_left"></span></div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
     import {mapState} from 'vuex'
     import Bscroll from 'better-scroll'
     import {getTalkList} from '../../../api/getData.js'
-
+    
     export default {
         name: '',
         data () {
@@ -43,12 +43,14 @@
                 uid:this.$route.params.u_id,
                 chatCont:'',
                 show_1:false,
-                arr:[]
+                arr:[],
+                myIcon: sessionStorage.getItem('userIcon'),
+                dtlIcon: this.$util.getDtlIcon()
             }
         },
         computed:{
             ...mapState({
-                _name:state=>state.chatName
+                _name:state=>state.chatName,
             })
         },
         methods: {
@@ -58,19 +60,16 @@
                 })
             },
             goToBack(){
-                 this.$destroy();
+                this.$destroy();
                 this.$router.go(-1)
             },
             goToBottom(){
                let chatList = document.getElementsByClassName('chat-child');
-               console.log('haha',chatList)
                setTimeout(()=>{
                 this.scroll_chat.scrollToElement(chatList[chatList.length-1],300)
                },200)
-               
             },
             getChatList(){
-                // let url = `/api/v1/getChatList?id=${this.uid}`;
                 getTalkList(this,this.uid).then(res=>{
                     if(res.data.status){
                         this.arr = res.data.result;
@@ -167,7 +166,6 @@
                 height 37px
                 margin-left 10px
                 border-radius 3px
-                background-image url('../../common/image/icon_3.jpg')
                 background-size contain
                 background-position center center
                 background-repeat no-repeat
@@ -201,7 +199,6 @@
                 height 37px
                 margin-right 10px
                 border-radius 3px
-                background-image url('../../common/image/icon_4.jpg')
                 background-size contain
                 background-position center center
                 background-repeat no-repeat

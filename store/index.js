@@ -10,7 +10,8 @@ const store = () => new Vuex.Store({
 		nickName:'',
 		icon:'',
 		area:'',
-		uId:''
+		uId:'',
+		dtlIcon:''
 	},
 	mutations
 })

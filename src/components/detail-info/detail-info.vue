@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="user-dtl-1">
-            <div class="user-icon"></div>
+            <div class="user-icon" :style="{backgroundImage: 'url('+require('../../common/image/'+dtlIcon)+')' }"></div>
             <div class="user-info">
                 <p ref='name'>{{dtl.nickName}}</p>
                 <p>手机号：<span>{{dtl.phone}}</span></p>
@@ -30,8 +30,7 @@
 
 <script>
     import {getFrdDtl,addFriend} from '../../../api/getData.js'
-
-
+    // import {mapState} from 'vuex'   
     export default {
         name: '',
         data () {
@@ -39,7 +38,14 @@
                 status:this.$route.params.status=='add'?true:false,
                 phone:this.$route.params.phone,
                 dtl:{},
+                myIcon:'icon_1.jpg',
+                dtlIcon:this.$util.getDtlIcon()
             }
+        },
+        computed:{
+            // ...mapState({
+            //     _icon:state=>state.dtlIcon
+            // })
         },
         methods: {
             goBack(){
@@ -95,8 +101,11 @@
         .user-icon 
             width 59px
             height 59px
-            background-color #abcdef
+            background-size contain
+            background-position center center
+            background-repeat no-repeat
             margin-right 15px
+            border-radius 5px
         .user-info p:first-child 
             margin-bottom 5px
         .user-info p:last-child

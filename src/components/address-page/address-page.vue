@@ -13,7 +13,7 @@
         </div>
         <div ref='users' class="user-wrapper">
             <ul class="user-parent">
-                <div v-for='item in user' :key='item.type' class='get_user_height' v-if='item.arr.length>0?true:false'>
+                <div v-for='item in user' :key='item.type' class='get_user_height' v-show='item.arr.length>0?true:false'>
                     <li class="user-letter-item" >
                         {{item.type}}
                     </li>
@@ -31,7 +31,6 @@
 <script>
     import Bscroll from 'better-scroll'    
     import {getFriendList} from '../../../api/getData.js'
-
     export default {
         name: '',
         data () {
@@ -53,18 +52,18 @@
             _clickLetter(_index){
                 let userList = document.getElementsByClassName('get_user_height');
                 if(_index == 0 || _index == 1){
-                    this.scroll_user.scrollToElement(userList[0],300)
+                    this.scroll_user.scrollToElement(userList[0],300);
                 }else{
-                    this.scroll_user.scrollToElement(userList[parseInt(_index)-1],300)
-
+                    this.scroll_user.scrollToElement(userList[parseInt(_index)-1],300);
                 }
             },
             _toDtl(obj,i){
-                // alert(_id)
+                // this.$store.commit('getDtlIcon',obj.icon);
+                this.$util.setDtlIcon(obj.icon);
                 this.$router.push({path:`/detailInfo/${obj.id}/chat`});
             },
             goToNew(){
-                this.$router.push('/reqFriend')
+                this.$router.push('/reqFriend');
             },
             getFriends(){
                 getFriendList(this).then(res => {

@@ -3,7 +3,7 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import {utils} from '../methods/utils.js'
+import utils from '../methods/utils.js'
 
 import loginPage from '../components/login-page/login-page'
 import registerPage from '../components/login-page/register-page'
