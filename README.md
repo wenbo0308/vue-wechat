@@ -5,9 +5,9 @@
 vue-cli 3.0 + vue-router + vuex + webpack + stylus + better-scroll + qrcode
 # 项目运行
 ## 本地开发环境
-'npm run serve'
+`npm run serve`
 ## 生产环境构建
-'npm run build'
+`npm run build`
 # 接口
 该项目属于前后端分离项目，服务端接口是以node.js实现，已部署至个人云服务器中，拥有独立的域名  
 [服务端代码Git地址请戳这里](https://github.com/wenbo0308/vue-wechat-serve)
