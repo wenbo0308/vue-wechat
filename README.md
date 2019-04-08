@@ -16,16 +16,61 @@ vue-cli 3.0 + vue-router + vuex + webpack + stylus + better-scroll + qrcode
 # 项目结构
 [plain]
 ```
-> .
->> api
->>> getData.js
->> public
->> src
->> store
->> .gitignore
->> babel.config.js
->> package-lock.json
->> package.json
->> README.md
->> vue.config.js
+.
+|——api
+|  |——getData.js
+|——public
+|——src
+|  |——assets
+|  |——common
+|  |  |——css
+|  |  |——font
+|  |  |——image
+|  |  |——js
+|  |——components
+|  |  |——add-page
+|  |  |  |——add-page.vue
+|  |  |  |——search-friend.vue
+|  |  |——address-page
+|  |  |  |——address-page.vue
+|  |  |  |——req-friend.vue
+|  |  |——chat-room
+|  |  |  |——chat-room.vue
+|  |  |——comm
+|  |  |  |——alertModal.vue
+|  |  |  |——deleteModal.vue
+|  |  |  |——promptBox.vue
+|  |  |——detail-info
+|  |  |  |——detail-info.vue
+|  |  |——discover-page
+|  |  |  |——discover-page.vue
+|  |  |——footer
+|  |  |  |——footer.vue
+|  |  |——login-page
+|  |  |  |——login-page.vue
+|  |  |  |——register-page.vue
+|  |  |——my-page
+|  |  |  |——my-detail.vue
+|  |  |  |——my-page.vue
+|  |  |  |——qr-code.vue
+|  |  |——w-header
+|  |  |  |——w-header.vue
+|  |  |——wechat-page
+|  |  |  |——wechat-page.vue
+|  |——methods
+|  |  |——http.js
+|  |  |——utils.js
+|  |——router
+|  |  |——index.js
+|  |——App.vue
+|  |——main.js
+|——store
+|  |——index.js
+|  |——mutation.js
+|——.gitignore
+|——babel.config.js
+|——package-lock.json
+|——package.json
+|——README.md
+|——vue.config.js
 ```
