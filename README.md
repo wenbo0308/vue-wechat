@@ -16,16 +16,16 @@ vue-cli 3.0 + vue-router + vuex + webpack + stylus + better-scroll + qrcode
 # 项目结构
 [plain]
 ```
->.
->>api
->>>getData.js
->>public
->>src
->>store
->>.gitignore
->>babel.config.js
->>package-lock.json
->>package.json
->>README.md
->>vue.config.js
+> .
+>> api
+>>> getData.js
+>> public
+>> src
+>> store
+>> .gitignore
+>> babel.config.js
+>> package-lock.json
+>> package.json
+>> README.md
+>> vue.config.js
 ```
