@@ -14,6 +14,7 @@ vue-cli 3.0 + vue-router + vuex + webpack + stylus + better-scroll + qrcode
 # 效果演示
 [查看demo](http://www.liwenbo.top)
 # 项目结构
+[plain]
 ```
 >.
 >>api
