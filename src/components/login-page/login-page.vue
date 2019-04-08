@@ -8,7 +8,8 @@
             </div>
             <div class='login-child'>
                 <label for="user_pwd">密码</label>
-                <input id='user_pwd' type="password" name="user" v-model.trim='submitForm.pwd'>
+                <input id='user_pwd' type="password" name="user" v-model.trim='submitForm.pwd' 
+                placeholder="字符限制">
             </div>
         </div>
         <div class="submit-btn" @click='submit()'>登录</div>

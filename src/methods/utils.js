@@ -8,7 +8,7 @@ export default  {
 		try{
 			// const nameReg = /^[u4e00-u9fa5]{4,15}$/;
 			const phoneReg = /^1[34578]\d{9}$/;
-			const pwdReg = /^[0-9]{1}([a-zA-Z0-9]|[._]){4,19}$/;
+			const pwdReg = /^([a-zA-Z0-9]|[._]){6,18}$/;
 			let status = true;
 			if(_this.sumbitForm.nickName.length === 0 || _this.sumbitForm.nickName > 16) {
 				_this.$refs.name.style.border = '1px solid red';
