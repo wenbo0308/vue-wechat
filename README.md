@@ -13,3 +13,18 @@ vue-cli 3.0 + vue-router + vuex + webpack + stylus + better-scroll + qrcode
 [服务端代码Git地址请戳这里](https://github.com/wenbo0308/vue-wechat-serve)
 # 效果演示
 [查看demo](http://www.liwenbo.top)
+# 项目结构
+```
+>.
+>>api
+>>>getData.js
+>>public
+>>src
+>>store
+>>.gitignore
+>>babel.config.js
+>>package-lock.json
+>>package.json
+>>README.md
+>>vue.config.js
+```
