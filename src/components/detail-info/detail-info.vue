@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="user-dtl-1">
-            <div class="user-icon" :style="{backgroundImage: 'url('+require('../../common/image/'+dtlIcon)+')' }"></div>
+            <div class="user-icon" :style="{backgroundImage: 'url('+require('../../common/image/'+dtl.icon)+')' }"></div>
             <div class="user-info">
                 <p ref='name'>{{dtl.nickName}}</p>
                 <p>手机号：<span>{{dtl.phone}}</span></p>
@@ -39,7 +39,7 @@
                 phone:this.$route.params.phone,
                 dtl:{},
                 myIcon:'icon_1.jpg',
-                dtlIcon:this.$util.getDtlIcon()
+                dtlIcon:''
             }
         },
         computed:{
@@ -56,6 +56,7 @@
                 getFrdDtl(this,this.phone).then(res => {
                     if(res.data.status){
                         this.dtl = res.data.result[0];
+                        console.log(this.dtl)
                     }
                 }).catch(err=>{
                     alert(JSON.stringify(err))
@@ -81,6 +82,7 @@
         },
         mounted(){
             this._myDtl();
+            console.log(this.$util.getDtlIcon())
         }
     }
 </script>
