@@ -15,7 +15,17 @@ vue-cli 3.0 + vue-router + vuex + webpack + stylus + better-scroll + qrcode + we
 [查看demo](http://www.liwenbo.top)
 # 演示截图
 ### 注册和登录
-![注册和登录](https://github.com/wenbo0308/vue-wechat/tree/master/screenShots/add.gif)
+![](https://raw.githubusercontent.com/wenbo0308/vue-wechat/master/screenShots/logandreg.gif)
+### 搜索添加好友
+![](https://raw.githubusercontent.com/wenbo0308/vue-wechat/master/screenShots/add.gif)
+### 确认好友
+![](https://raw.githubusercontent.com/wenbo0308/vue-wechat/master/screenShots/confrim.gif)
+### 聊天
+![](https://raw.githubusercontent.com/wenbo0308/vue-wechat/master/screenShots/chat1.gif)
+![](https://raw.githubusercontent.com/wenbo0308/vue-wechat/master/screenShots/chat2.gif)
+### 二维码
+![](https://raw.githubusercontent.com/wenbo0308/vue-wechat/master/screenShots/qrcode.gif)
+
 # 项目结构
 ```
 .
