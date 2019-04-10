@@ -81,7 +81,7 @@
             },
             initWs(){
                 if('WebSocket' in window){
-                    this.ws = new WebSocket('ws://www.liwenbo.top/api
+                    this.ws = new WebSocket('ws://www.liwenbo.top/api');
                     this.ws.onopen = (err) => {
                         if(err){console.log(`webSocket连接失败，${JSON.stringify(err)}`)};
                         console.log('webSocket连接成功');
