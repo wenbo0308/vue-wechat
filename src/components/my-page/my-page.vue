@@ -38,7 +38,7 @@
                     {icon:require('../../common/image/m_b.png'),title:'表情'},
                     {icon:require('../../common/image/m_sh.png'),title:'设置'},
                 ],
-                myIcon: lcoalStorage.getItem('userIcon')
+                myIcon: localStorage.getItem('userIcon')
             }
         },
         watch: {
@@ -52,9 +52,9 @@
             getMyInfo(){
                 getMyDtl(this).then(res => {
                     if(res.data.status){
-                        this.user = res.data.result;
+                        this.user = res.data.result; 
                         console.log('haha',this.user);
-                    }
+                    } m
                 }).catch(err=>{
                     alert(JSON.stringify(err))
                 })               
