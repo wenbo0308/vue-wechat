@@ -63,7 +63,7 @@
         data () {
             return {
                 slide_mode:'slide-left',
-                myIcon:sessionStorage.getItem('userIcon'),
+                myIcon:localStorage.getItem('userIcon'),
                 user:{}
             }
         },
@@ -85,8 +85,8 @@
                 getMyDtl(this).then(res => {
                     if(res.data.status){
                         this.user = res.data.result;
-                        sessionStorage.setItem('name',this.user.nickName);
-                        sessionStorage.setItem('phone',this.user.phone)
+                        localStorage.setItem('name',this.user.nickName);
+                        localStorage.setItem('phone',this.user.phone)
                     }
                 }).catch(err=>{
                     alert(JSON.stringify(err))

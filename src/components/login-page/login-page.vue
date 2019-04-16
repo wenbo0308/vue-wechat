@@ -40,7 +40,7 @@
                         Cookies.set('auth_token',res.data.token,{expires:1,path:''});
                         console.log(typeof res.data.user)
                         // this.$store.commit('getUserDtl',res.data.user)
-                        sessionStorage.setItem('userIcon',res.data.user.icon)
+                        localStorage.setItem('userIcon',res.data.user.icon)
                         this.$router.push('/wechat')
                     }else{
                         this.$refs.modal.hide()

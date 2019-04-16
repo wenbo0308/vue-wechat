@@ -38,7 +38,7 @@
                     {icon:require('../../common/image/m_b.png'),title:'表情'},
                     {icon:require('../../common/image/m_sh.png'),title:'设置'},
                 ],
-                myIcon: sessionStorage.getItem('userIcon')
+                myIcon: lcoalStorage.getItem('userIcon')
             }
         },
         watch: {

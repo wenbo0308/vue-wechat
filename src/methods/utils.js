@@ -36,6 +36,6 @@ export default  {
 			throw err;
 		}
 	},
-	setDtlIcon: (str) => {sessionStorage.setItem('dtl_icon',str)},
-	getDtlIcon: () => sessionStorage.getItem('dtl_icon')
+	setDtlIcon: (str) => {localStorage.setItem('dtl_icon',str)},
+	getDtlIcon: () => localStorage.getItem('dtl_icon')
 }

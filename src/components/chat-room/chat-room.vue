@@ -44,7 +44,7 @@
                 chatCont:'',
                 show_1:false,
                 arr:[],
-                myIcon: sessionStorage.getItem('userIcon'),
+                myIcon: localStorage.getItem('userIcon'),
                 dtlIcon: this.$util.getDtlIcon()
             }
         },

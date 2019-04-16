@@ -34,9 +34,9 @@
                     imagePath:this.$route.params.id,
                     filter:'color',
                 },
-                myIcon: sessionStorage.getItem('userIcon'),
-                name:sessionStorage.getItem('name'),
-                phone:sessionStorage.getItem('phone')
+                myIcon: localStorage.getItem('userIcon'),
+                name: localStorage.getItem('name'),
+                phone: localStorage.getItem('phone')
             }
         },
         computed:{
