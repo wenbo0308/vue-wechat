@@ -82,6 +82,7 @@
                 let cont = this.$refs.name.innerHTML
                 if(!cont){return false}
                 this.$store.commit('getChatName',cont)
+                this.$util.setDtlIcon(this.dtlIcon)
                 this.$router.push({path:`/chatRoom/${this.phone}`});
             }
         },
