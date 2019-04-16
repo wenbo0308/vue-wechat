@@ -6,7 +6,8 @@
             </div>
         </div>
         <div class="user-dtl-1">
-            <div ref="icon" class="user-icon" :style="{backgroundImage: 'url('+require('../../common/image/'+dtlIcon)+')' }"></div>
+            <!-- :style="{backgroundImage: 'url('+require('../../common/image/'+dtlIcon)+')' }" -->
+            <div ref="icon" class="user-icon" ></div>
             <div class="user-info">
                 <p ref='name'>{{dtl.nickName}}</p>
                 <p>手机号：<span>{{dtl.phone}}</span></p>
@@ -57,9 +58,9 @@
                     if(res.data.status){
                         this.dtl = res.data.result[0];
                         this.dtlIcon = res.data.result[0].icon;
-                        // if(this.dtlIcon){
-                        //     this
-                        // }
+                        if(this.dtlIcon){
+                            this.$refs.icon.style.backgroundImage = 'url('+require('../../common/image/'+this.dtlIcon)+')';
+                        }
                         console.log(this.dtlIcon)
                     }
                 }).catch(err=>{
