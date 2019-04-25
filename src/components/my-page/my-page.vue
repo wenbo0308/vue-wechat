@@ -50,11 +50,10 @@
         },
         methods: {
             getMyInfo(){
-                getMyDtl(this).then(res => {
+                getMyDtl(this).then((res,rej) => {
                     if(res.data.status){
                         this.user = res.data.result; 
-                        console.log('haha',this.user);
-                    } m
+                    }
                 }).catch(err=>{
                     alert(JSON.stringify(err))
                 })               
